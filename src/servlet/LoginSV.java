@@ -33,7 +33,7 @@ public class LoginSV extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -46,18 +46,18 @@ public class LoginSV extends HttpServlet {
 		String email = "";
 		String password = "";
 
-		email = request.getParameter("email");
-		password = request.getParameter("pass");
+		email = request.getParameter("login-email");
+		password = request.getParameter("login-pass");
 		password = DataMultitool.getMD5(password);
 
 		UserManager userManager = new UserManager();
 		if (userManager.checkUserLogin(email, password)) {
-			request.setAttribute("message", "Success!");
+			request.setAttribute("message", "Login successfull");
 		} else {
-			request.setAttribute("message", "Incorrect email/password");
+			request.setAttribute("message", "<div class=\"error\">Incorrect email/password</div>");
 		}
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 }

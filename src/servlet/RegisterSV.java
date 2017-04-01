@@ -39,33 +39,43 @@ public class RegisterSV extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		UserManager userManager = new UserManager();
 		String email = "";
 		String password = "";
 		String password2 = "";
 		String firstName = "";
-		String lastName = "";
-		UserManager userManager = new UserManager();
+		String lastName = "";		
 		
 		email = request.getParameter("email");
 		password = request.getParameter("pass");
 		password2 = request.getParameter("pass2");	
 		firstName = request.getParameter("first-name");
 		lastName = request.getParameter("last-name");
-			
-		if (!password.equals(password2))
-		{
-			request.setAttribute("message", "Password not match.");
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+		
+		//Check for empty fields
+		if (email.equals("") || password.equals("") || password2.equals("") || firstName.equals("") || lastName.equals("")){
+			request.setAttribute("message", "<div class=\"error\">One or more field is epty.</div>");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 			return;
 		}
+		
+		//Check if given passwords are equals
+		if (!password.equals(password2))
+		{
+			request.setAttribute("message", "<div class=\"error\">Password not match.</div>");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			return;
+		}
+		//Hide password
 		password = DataMultitool.getMD5(password);	
 		password2 = "";
 		
 		try {
 			if(userManager.userAlredadyExist(email))
 			{
-				request.setAttribute("message", "This e-mail is already in use.");
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
+				request.setAttribute("message", "<div class=\"error\">This e-mail is already in use.</div>");
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
 				return;
 			}
 		} catch (SQLException e) {
@@ -73,8 +83,9 @@ public class RegisterSV extends HttpServlet {
 		}
 		
 		userManager.addUser(email, password, firstName, lastName, request.getRemoteAddr());
-	
-		request.getRequestDispatcher("/register.jsp").forward(request, response);
+		
+		request.setAttribute("message", "<div class=\"success\">Register successfull</div>");	
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 	
 
