@@ -16,8 +16,24 @@
 		};
 	</script>
 
-	<div class="main-container">
-        ${message}
+	
+
+<div class="main-container">
+        <div class="main-menu-holder">
+        	<div class="menu-item">
+            	<a href="./tweets">Tweets</a>
+            </div>
+            
+            <div class="menu-item">
+            	<a href="./profile">Profile</a>
+            </div>
+            
+            <div style="float: right !important;" class="menu-item">
+            	<a href="javascript:logout();">Kijelentkezés</a>
+            </div>
+        </div>
+        
+        <div>${message}</div>
         
         <div class="post-container">
             <form action="tweets" method="POST">
@@ -25,11 +41,6 @@
                 	<span style="font-weight:600; font-size:14px;">
                     	Tweet as ${name}
                     </span> 
-                    <a href="javascript:logout();">
-                    	<span style="font-size:14px; float:right;">
-                        	(Kijelentkezés)
-                        </span>
-                  	</a>
                 </div>
                     
             	<input class="tweet-input" type="text" id="tweet" name="tweet" placeholder="Type your post here..." autocomplete="off"/>
@@ -39,5 +50,6 @@
     </div>
     
 	${tweets}
+
 </body>
 </html>
