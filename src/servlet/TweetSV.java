@@ -77,7 +77,7 @@ public class TweetSV extends HttpServlet {
 		if (!request.getParameter("tweet").equals("")) {
 			String content = request.getParameter("tweet");
 			Tweet tweet = new Tweet(user.getId(), clearContent(content));
-			tweet.saveTweet();
+			tweet.save();
 		}
 
 		request.setAttribute("name", user.getFirstName());
@@ -121,7 +121,7 @@ public class TweetSV extends HttpServlet {
 	}
 
 	public String getTweetsByResultSet(ResultSet rs, int tweetCount) {
-		String result = null;
+		String result = "";
 		UserManager um = new UserManager();
 		
 		try {

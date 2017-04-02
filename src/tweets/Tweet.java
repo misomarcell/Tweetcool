@@ -40,7 +40,7 @@ public class Tweet {
 		return content;
 	}
 
-	public void saveTweet() {
+	public void save() {
 		try {
 			sqlConnector.sendQuery("INSERT INTO tweets VALUES('0', " + "'" + author + "', " + "'" + date + "', " + "'"
 					+ content + "');");
