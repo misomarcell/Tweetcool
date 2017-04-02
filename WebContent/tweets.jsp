@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<title>Tweetcool</title>
@@ -18,7 +19,7 @@
 
 	
 
-<div class="main-container">
+	<div class="main-container">
         <div class="main-menu-holder">
         	<div class="menu-item">
             	<a href="./tweets">Tweets</a>
@@ -32,6 +33,7 @@
             	<a href="javascript:logout();">Kijelentkezés</a>
             </div>
         </div>
+        
         
         <div>${message}</div>
         
@@ -49,7 +51,27 @@
         </div>
     </div>
     
-	${tweets}
+	<!--<div class="post main-container">
+		<div class="headline">
+			<span class="author">
+				<a href="#">
+					Author Name
+				</a>
+			</span> - 
+			<span class="date">
+				2017.12.15 18:22:55
+			</span>
+            
+            <span class="delete-tweet">
+            	<a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+            </span>
+		</div>
+        
+        <div class="post-text">
+            Tweet content goes here...
+        </div>
+	</div>-->
+    ${tweets}
 
 </body>
 </html>

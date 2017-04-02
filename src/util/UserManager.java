@@ -42,8 +42,7 @@ public class UserManager {
 		return null;
 	}
 
-	//This is the only function what actually creates an user
-	//Every other calls this one to create one
+	//This is the only function what actually creates a User
 	public User createUserByResultSet(ResultSet rs) {
 		try {
 			rs.next();
@@ -91,6 +90,11 @@ public class UserManager {
 		return false;
 	}
 
+	public User getCurrentUser(HttpServletRequest request)
+	{
+		return getUserBySessionID(getCookieValue("sessionID", request));
+	}
+	
 	public String getCookieValue(String cookieName, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {

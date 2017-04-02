@@ -26,6 +26,7 @@ h2 {
 	padding:6px;
 	width: calc(100% - 14px);
 	margin:auto;
+	margin-top: 10px;
 }
 
 .error {
@@ -120,6 +121,19 @@ h2 {
 
 .author {
 	font-family: 'Nunito', sans-serif;
+}
+
+.date {
+	font-family: 'Nunito', sans-serif;
+	font-size: 12px;
+}
+
+.delete-tweet {
+	float: right;	
+}
+
+.delete-tweet a {
+	color: #000;	
 }
 
 .author a {
