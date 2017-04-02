@@ -13,7 +13,7 @@ public class SQLConnector {
 	public SQLConnector(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "admin", "admin");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "admin", "admin");	
 			System.out.println("New SQL connection!");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -21,7 +21,7 @@ public class SQLConnector {
 		
 	}
 	
-	public void disconnectSQL()
+	public void disconnect()
 	{
 		try {
 			conn.close();
@@ -33,9 +33,9 @@ public class SQLConnector {
 	public void sendQuery(String query) {	
 		try {
 			Statement stmt = conn.createStatement();
-
 			System.out.println("Sending Query: " + query);
 			stmt.executeUpdate(query);
+			stmt.close();
 		} catch (Exception e) {
 			System.err.println("sendQuery - Got an exception: ");
 			System.err.println(e.getMessage());
@@ -47,6 +47,7 @@ public class SQLConnector {
 		try {
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
+			stmt.close();
 		} catch (Exception e) {
 			System.err.println("getData - Got an exception: ");
 			System.err.println(e.getMessage());

@@ -13,15 +13,13 @@ public class Tweet {
 	private String author;
 	private String date;
 	private String content;
-	private SQLConnector sqlConnector = null;
+	private SQLConnector sqlConnector = new SQLConnector();
 
 	public Tweet(String author, String content) {
-
 		super();
 		this.author = author;
 		this.date = getCurrentDate().toString();
-		this.content = content;
-		sqlConnector = new SQLConnector();
+		this.content = content;	
 	}
 
 	private String getCurrentDate() {
@@ -62,7 +60,6 @@ public class Tweet {
 		String authorID = null;
 		SQLConnector sqlConnector = new SQLConnector();
 		ResultSet rs = sqlConnector.getData("SELECT author FROM tweets WHERE id = '" + tweetID + "'");
-		
 		try {
 			if(rs.next())
 			{

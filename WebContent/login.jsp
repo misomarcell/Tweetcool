@@ -20,6 +20,7 @@
     
     <div class="main-container separated">
     	<center><h1>Tweetcool</h1></center>
+        <center><div style="margin-top: -10px;">a codecool alternative</div></center>
     </div>
     
 	<div class="main-container">

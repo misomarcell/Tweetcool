@@ -17,25 +17,22 @@ import util.UserManager;
 
 
 public class TweetSV extends HttpServlet {
+	
+
 	private static final long serialVersionUID = 1L;
 	private HttpServletRequest request;
 	private UserManager userManager = new UserManager();
+	private SQLConnector sqlConnector = new SQLConnector();
 	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public TweetSV() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.request = request;
+		
 		Data data = Data.newInstance();
 		
 		//Check if user still logged in
@@ -98,7 +95,6 @@ public class TweetSV extends HttpServlet {
 
 
 	public String getTweets(int count) {
-		SQLConnector sqlConnector = new SQLConnector();
 		ResultSet rs = null;
 
 		try {
@@ -111,7 +107,6 @@ public class TweetSV extends HttpServlet {
 	}
 
 	public String getTweetsByAuthor(String authorID, int TweetCount) {
-		SQLConnector sqlConnector = new SQLConnector();
 		ResultSet rs = null;
 		
 		try {
@@ -183,9 +178,7 @@ public class TweetSV extends HttpServlet {
 			return;
 		}
 		
-		SQLConnector sqlConnector = new SQLConnector();
 		sqlConnector.sendQuery("DELETE FROM tweets WHERE id = '" + tweetID + "';");
-		sqlConnector.disconnectSQL();
 		System.out.println("Tweet removed: " + tweetID);
 	}
 }
