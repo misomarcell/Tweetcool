@@ -38,11 +38,11 @@
        	<div class="register-container">
         	<center><h2>Register</h2> </center>
             <form action="register" method="POST">
-                <input class="text-input name-text" type="text" id="first-name" name="first-name" placeholder="First name"/>
-                <input class="text-input name-text" type="text" id="last-name" name="last-name" placeholder="Last name"/>
-                <input class="text-input login-text" type="email" id="email" name="email" placeholder="Enter your e-mail address"/>
-                <input class="text-input login-text" type="password" id="pass" name="pass" placeholder="Password"/>
-                <input class="text-input login-text" type="password" id="pass2" name="pass2" placeholder="Confirm Password"/>
+                <input class="text-input name-text" type="text" id="first-name" name="first-name" placeholder="First name" autocomplete="off"/>
+                <input class="text-input name-text" type="text" id="last-name" name="last-name" placeholder="Last name" autocomplete="off"/>
+                <input class="text-input login-text" type="email" id="email" name="email" placeholder="Enter your e-mail address" autocomplete="off"/>
+                <input class="text-input login-text" type="password" id="pass" name="pass" placeholder="Password" autocomplete="off"/>
+                <input class="text-input login-text" type="password" id="pass2" name="pass2" placeholder="Confirm Password" autocomplete="off"/>
                 <input class="login-button" type="submit" id="submit" name="submit" value="Register"/> 
             </form>
        	</div>
