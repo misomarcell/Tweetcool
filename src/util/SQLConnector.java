@@ -35,7 +35,7 @@ public class SQLConnector {
 			Statement stmt = conn.createStatement();
 			System.out.println("Sending Query: " + query);
 			stmt.executeUpdate(query);
-			stmt.close();
+			
 		} catch (Exception e) {
 			System.err.println("sendQuery - Got an exception: ");
 			System.err.println(e.getMessage());
@@ -47,7 +47,7 @@ public class SQLConnector {
 		try {
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
-			stmt.close();
+			
 		} catch (Exception e) {
 			System.err.println("getData - Got an exception: ");
 			System.err.println(e.getMessage());
