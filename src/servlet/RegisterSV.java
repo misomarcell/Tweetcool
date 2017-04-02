@@ -47,6 +47,7 @@ public class RegisterSV extends HttpServlet {
 		String firstName = "";
 		String lastName = "";		
 		
+		request.setCharacterEncoding("UTF-8");
 		email = request.getParameter("email");
 		password = request.getParameter("pass");
 		password2 = request.getParameter("pass2");	
@@ -55,7 +56,7 @@ public class RegisterSV extends HttpServlet {
 		
 		//Check for empty fields
 		if (email.equals("") || password.equals("") || password2.equals("") || firstName.equals("") || lastName.equals("")){
-			request.setAttribute("message", "<div class=\"error\">One or more field is epty.</div>");
+			request.setAttribute("message", "<div class=\"message error\">One or more field is epty.</div>");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 			return;
 		}
@@ -63,7 +64,7 @@ public class RegisterSV extends HttpServlet {
 		//Check if given passwords are equals
 		if (!password.equals(password2))
 		{
-			request.setAttribute("message", "<div class=\"error\">Password not match.</div>");
+			request.setAttribute("message", "<div class=\"message error\">Password not match.</div>");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 			return;
 		}
@@ -74,7 +75,7 @@ public class RegisterSV extends HttpServlet {
 		try {
 			if(userManager.userAlredadyExist(email))
 			{
-				request.setAttribute("message", "<div class=\"error\">This e-mail is already in use.</div>");
+				request.setAttribute("message", "<div class=\"message error\">This e-mail is already in use.</div>");
 				request.getRequestDispatcher("/login.jsp").forward(request, response);
 				return;
 			}
@@ -82,9 +83,9 @@ public class RegisterSV extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		userManager.addUser(email, password, firstName, lastName, request.getRemoteAddr());
+		userManager.addUserToDB(email, password, firstName, lastName, request.getRemoteAddr());
 		
-		request.setAttribute("message", "<div class=\"success\">Register successfull</div>");	
+		request.setAttribute("message", "<div class=\"message success\">Register successfull, now you can log in.</div>");	
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 	

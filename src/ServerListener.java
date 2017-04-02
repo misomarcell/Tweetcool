@@ -12,8 +12,6 @@ import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
 
-import util.SQLConnector;
-
 /**
  * Application Lifecycle Listener implementation class ServerListener
  *
@@ -33,12 +31,6 @@ public class ServerListener implements ServletRequestListener, AsyncListener, Se
      */
     public void contextInitialized(ServletContextEvent sce)  { 
          System.out.println("Server started...");
-         SQLConnector conn = new SQLConnector();
-         try {
-			conn.connectSQL();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
     }
     
 	/**

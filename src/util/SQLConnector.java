@@ -1,18 +1,36 @@
 package util;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SQLConnector {
 
 	Connection conn;
 
-	public void connectSQL() throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "admin", "admin");
-		System.out.println("New SQL connection!");
+	public SQLConnector(){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "admin", "admin");
+			System.out.println("New SQL connection!");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
-
-	public void sendQuery(String query) {
+	
+	public void disconnectSQL()
+	{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendQuery(String query) {	
 		try {
 			Statement stmt = conn.createStatement();
 
@@ -33,6 +51,7 @@ public class SQLConnector {
 			System.err.println("getData - Got an exception: ");
 			System.err.println(e.getMessage());
 		}
+		
 		return rs;
-	}
+	}	
 }
