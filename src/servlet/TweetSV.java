@@ -140,14 +140,14 @@ public class TweetSV extends HttpServlet {
 	}
 	
 	private String getFormedTweet(String authorName, String content, String date, String authorID, String tweetID) {
-		String deleteString = "<span class=\"delete-tweet\">" +
+		String deleteIcon = "<span class=\"delete-tweet\">" +
 				"<a href=\"?delete=" + tweetID + "\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></a>" +
 	            "</span>";
 				
 		UserManager um = new UserManager();
-		if (!authorID.equals(um.getUserBySessionID(um.getCookieValue("sessionID", request)).getId()))
+		if (!authorID.equals(um.getCurrentUser(request).getId()))
 		{
-			deleteString = "";
+			deleteIcon = "";
 		}
 		
 		String result = "<div class=\"post main-container\">" +
@@ -160,7 +160,7 @@ public class TweetSV extends HttpServlet {
 								"<span class=\"date\">" +
 									 date +
 								"</span>" +
-								deleteString +
+								deleteIcon +
 							"</div>" +
 							"<div class=\"post-text\">" +
 								content +

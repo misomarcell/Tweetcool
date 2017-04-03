@@ -71,6 +71,7 @@ h2 {
 	font-weight: bold;	
 	float: left;
 	padding: 10px;
+	transition: all 0.5s;
 }
 
 .menu-item a {
