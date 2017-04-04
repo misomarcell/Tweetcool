@@ -34,12 +34,13 @@ public class LoginSV extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Check if user logged in
 		Data data = Data.newInstance();
+		System.out.println("Checking...");
 		if (data.isUserLoggedIn(request)) {
 			response.sendRedirect("./tweets");
 			return;
 		}
 		
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	/**
@@ -69,7 +70,7 @@ public class LoginSV extends HttpServlet {
 			request.setAttribute("message", "<div class=\"message error\">Incorrect email/password</div>");
 		}
 
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	public void generateSessionCookie(HttpServletResponse response, String email) {

@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -10,13 +10,6 @@
 </head>
 
 <body>
-
-	<script>
-		if (location.pathname.substring(1) != "Tweetcool/login")
-		{
-			window.location="/Tweetcool/login";
-		}
-	</script>
     
     <div class="main-container separated">
     	<center><h1>Tweetcool</h1></center>
@@ -48,7 +41,7 @@
        	</div>
         
         <div class="footer-container">
-        	Made by Marcell Misó @ 2017
+        	Made by Marcell Mis� @ 2017
         </div>
     </div>
 </body>

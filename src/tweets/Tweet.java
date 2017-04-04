@@ -1,11 +1,9 @@
 package tweets;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import util.SQLConnector;
+
 
 public class Tweet {
 
@@ -13,13 +11,23 @@ public class Tweet {
 	private String author;
 	private String date;
 	private String content;
-	private SQLConnector sqlConnector = new SQLConnector();
 
+	//Used for creatin a tweet after posting it
 	public Tweet(String author, String content) {
 		super();
 		this.author = author;
 		this.date = getCurrentDate().toString();
 		this.content = content;	
+	}
+	
+	
+	//Used for creating a tweet object after reading it from db
+	public Tweet(String id, String author, String date, String content)
+	{
+		this.id = id;
+		this.author = author;
+		this.date = date;
+		this.content = content;
 	}
 
 	private String getCurrentDate() {
@@ -45,34 +53,4 @@ public class Tweet {
 		return content;
 	}
 
-	public void save() {
-		try {
-			sqlConnector.sendQuery("INSERT INTO tweets VALUES('0', " + "'" + author + "', " + "'" + date + "', " + "'"
-					+ content + "');");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static String getAuthorById(String tweetID)
-	{
-		String authorID = null;
-		SQLConnector sqlConnector = new SQLConnector();
-		ResultSet rs = sqlConnector.getData("SELECT author FROM tweets WHERE id = '" + tweetID + "'");
-		try {
-			if(rs.next())
-			{
-				authorID = rs.getString(1);
-			}else{
-				return null;
-			}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return authorID;
-		
-	}
 }

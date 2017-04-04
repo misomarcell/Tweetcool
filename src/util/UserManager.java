@@ -10,8 +10,8 @@ import users.User;
 
 public class UserManager {
 
-	private SQLConnector sqlConnector = new SQLConnector();
-
+	private SQLConnector sqlConnector = new SQLConnector();;
+	
 	public void addUserToDB(String email, String password, String firstName, String lastName, String ip) {
 		try {
 			sqlConnector.sendQuery("INSERT INTO users VALUES('0', " + "'" + email + "', " + "'" + password + "', " + "'"

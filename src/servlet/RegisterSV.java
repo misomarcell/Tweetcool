@@ -14,10 +14,6 @@ import util.UserManager;
 public class RegisterSV extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -38,7 +34,7 @@ public class RegisterSV extends HttpServlet {
 		//Check for empty fields
 		if (email.equals("") || password.equals("") || password2.equals("") || firstName.equals("") || lastName.equals("")){
 			request.setAttribute("message", "<div class=\"message error\">One or more field is epty.</div>");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
 		
@@ -46,28 +42,30 @@ public class RegisterSV extends HttpServlet {
 		if (!password.equals(password2))
 		{
 			request.setAttribute("message", "<div class=\"message error\">Password not match.</div>");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
 		//Hide password
 		password = DataMultitool.getMD5(password);	
 		password2 = null;
 		
+		//Check if user already exist
 		try {
 			if(userManager.userAlredadyExist(email))
 			{
 				request.setAttribute("message", "<div class=\"message error\">This e-mail is already in use.</div>");
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 				return;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+		//Add user to the DB
 		userManager.addUserToDB(email, password, firstName, lastName, request.getRemoteAddr());
 		
 		request.setAttribute("message", "<div class=\"message success\">Register successfull, now you can log in.</div>");	
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	
 

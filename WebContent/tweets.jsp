@@ -21,17 +21,17 @@
 
 	<div class="main-container">
         <div class="main-menu-holder">
-        	<div class="menu-item">
-            	<a href="./tweets">Tweets</a>
-            </div>
+        	<a href="./tweets"><div class="menu-item">
+                    Tweets
+         	</div></a>  
             
-            <div class="menu-item">
-            	<a href="./profile">Profile</a>
-            </div>
-            
-            <div style="float: right !important;" class="menu-item">
-            	<a href="javascript:logout();">Kijelentkezés</a>
-            </div>
+            <a href="./profile"><div class="menu-item">
+            	Profile
+            </div></a>
+                  
+            <a href="javascript:logout();"><div style="float: right !important;" class="menu-item">
+            	Kijelentkezés
+            </div></a>
         </div>
         
         
