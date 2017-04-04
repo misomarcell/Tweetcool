@@ -25,7 +25,7 @@
                     Tweets
          	</div></a>  
             
-            <a href="./profile"><div class="menu-item">
+            <a href="${profileurl}"><div class="menu-item">
             	Profile
             </div></a>
                   

@@ -38,9 +38,10 @@ public class TweetSV extends HttpServlet {
 		User user = userManager.getUserBySessionID(userManager.getCookieValue("sessionID", request));
 
 		request.setAttribute("name", user.getFirstName());
-
+		request.setAttribute("profileurl", "./profile?user=" + user.getId());
+		
 		if (request.getParameter("delete") != null) {
-			requestDeleteTweet(tweetManager.getTweetByID(request.getParameter("delete")), request);
+			tweetManager.requestDeleteTweet(tweetManager.getTweetByID(request.getParameter("delete")), request);
 		}
 
 		if (request.getParameter("author") != null) {
@@ -88,13 +89,4 @@ public class TweetSV extends HttpServlet {
 		return result;
 	}
 
-	private void requestDeleteTweet(Tweet tweet, HttpServletRequest request) {
-		if (!userManager.getCurrentUser(request).getId().equals(tweet.getAuthor())) {
-			System.out.println(userManager.getCurrentUser(request).getFullName() + " attempted to delete a tweet("
-					+ tweet.getId() + ") from someone else.");
-			request.setAttribute("message", "<div class=\"message error\">ERROR: Selected tweet isn't yours!</div>");
-			return;
-		}
-		tweetManager.deleteTweet(tweet);
-	}
 }

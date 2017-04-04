@@ -32,7 +32,7 @@ public class SQLConnector {
 	
 	public void sendQuery(String query) {	
 		try {
-			Statement stmt = conn.createStatement();
+			Statement stmt = conn.createStatement();			
 			System.out.println("Sending Query: " + query);
 			stmt.executeUpdate(query);
 			

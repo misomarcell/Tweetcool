@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -11,7 +11,13 @@
 
 <body>
     
-    <div class="main-container separated">
+    <script>
+		if(window.location.href.endsWith("/")) {
+			window.location = "./login";
+		}
+	</script>
+    
+    <div id="greeting" class="main-container">
     	<center><h1>Tweetcool</h1></center>
         <center><div style="margin-top: -10px;">a codecool alternative</div></center>
     </div>

@@ -30,7 +30,6 @@ public class TweetManager {
 
 	public String getAuthorByTweetId(String tweetID) {
 		String authorID = null;
-		SQLConnector sqlConnector = new SQLConnector();
 		ResultSet rs = sqlConnector.getData("SELECT author FROM tweets WHERE id = '" + tweetID + "'");
 		try {
 			if (rs.next()) {
@@ -127,14 +126,25 @@ public class TweetManager {
 		}
 
 		String result = "<div class=\"post main-container\">" + "<div class=\"headline\">" + "<span class=\"author\">"
-				+ "<a href=\"?author=" + tweet.getAuthor() + "\">" + userManager.getUserByID(tweet.getAuthor()).getFullName() + "</a>"
+				+ "<a href=\"./profile?user=" + tweet.getAuthor() + "\">" + userManager.getUserByID(tweet.getAuthor()).getFullName() + "</a>"
 				+ "</span> - " + "<span class=\"date\">" + tweet.getDate() + "</span>" + deleteIcon + "</div>"
 				+ "<div class=\"post-text\">" + tweet.getContent() + "</div>" + "</div>";
 		return result;
 	}
 
+	public void requestDeleteTweet(Tweet tweet, HttpServletRequest request) {
+		if (!userManager.getCurrentUser(request).getId().equals(tweet.getAuthor())) {
+			System.out.println(userManager.getCurrentUser(request).getFullName() + " attempted to delete a tweet("
+					+ tweet.getId() + ") from someone else.");
+			request.setAttribute("message", "<div class=\"message error\">ERROR: Selected tweet isn't yours!</div>");
+			return;
+		}
+		deleteTweet(tweet);
+	}
+	
 	public void deleteTweet(Tweet tweet) {
 		sqlConnector.sendQuery("DELETE FROM tweets WHERE id = '" + tweet.getId()+ "';");
 		System.out.println("Tweet removed: " + tweet.getId());
 	}
+	
 }

@@ -8,12 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Data;
 import util.DataMultitool;
 import util.UserManager;
 
 public class RegisterSV extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Check if user logged in
+		Data data = Data.newInstance();
+		if (data.isUserLoggedIn(request)) {
+			response.sendRedirect("./tweets");
+			return;
+		}
+		
+		request.setCharacterEncoding("UTF-8");
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -24,7 +36,7 @@ public class RegisterSV extends HttpServlet {
 		String firstName = "";
 		String lastName = "";		
 		
-		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		email = request.getParameter("email");
 		password = request.getParameter("pass");
 		password2 = request.getParameter("pass2");	
