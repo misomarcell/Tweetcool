@@ -1,2 +1,2 @@
 # Tweetcool
-A Codecool copy of Twitter
+A Codecool version of Twitter
